@@ -22,7 +22,7 @@ Operating system      : Windows 10
   Text Editor                  :   Py charm, VS Code
   
   
-future plan for this website:-
+Future plan for this website:-
 
 Enabling OTP verification process.
 
