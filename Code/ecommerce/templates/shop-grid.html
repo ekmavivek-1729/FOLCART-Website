@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Art Mall</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css">
+</head>
+
+<body>
+    <!-- Humberger Begin -->
+    <div class="humberger__menu__overlay"></div>
+    <div class="humberger__menu__wrapper">
+        <div class="humberger__menu__logo">
+            <a href="/home"><img src="/static/img/logo.png" alt=""></a>
+        </div>
+        <nav class="humberger__menu__nav mobile-menu">
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li class="active"><a href="/products">Shop</a></li>
+                <li>
+                    {% if user.is_authenticated %}
+                        <a href="/account/">Account</a>
+                    {% else %}
+                        <a href="/register">Register</a>
+                    {% endif %}
+                </li>
+                <li><a href="/shoppingcart">Cart</a></li>
+                <li><a href="/about">About</a></li>
+                  <li> {% if user.is_authenticated %}
+                                <a href="/logout"><img src="/static/img/logout-01.png" alt="IMG-LOGOUT"></a>
+                            {% else %}
+                                <a href="/login"><img src="/static/img/login-01.png" alt="IMG-LOGIN"></a>
+                            {% endif %}
+                        </li>
+            </ul>
+        </nav>
+        <div id="mobile-menu-wrap"></div>
+    </div>
+    <!-- Humberger End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">       
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="header__logo">
+                        <a href="/home"><img src="/static/img/logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <nav class="header__menu">
+                        <ul>
+                            <li><a href="/home">Home</a></li>
+                            <li class="active"><a href="/products">Shop</a></li>
+                            <li>
+                                {% if user.is_authenticated %}
+                                    <a href="/account/">Account</a>
+                                {% else %}
+                                    <a href="/register">Register</a>
+                                {% endif %}
+                            </li>
+                            <li><a href="/shoppingcart">Cart</a></li>
+                            <li><a href="/about">About</a></li>
+                            <li style="left: 300px"> 
+                                {% if user.is_authenticated %}
+                                    <a href="/logout"><img src="/static/img/logout-01.png" alt="IMG-LOGOUT"></a>
+                                {% else %}
+                                    <a href="/login"><img src="/static/img/login-01.png" alt="IMG-LOGIN"></a>
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="humberger__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+
+    <!-- Product Section Begin -->
+    <section class="product spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-5">
+                    <div class="sidebar">
+                        <div class="sidebar__item">
+                            <h4>Department</h4>
+                            {% for x in categories %}
+                            <ul>
+                                <li><a href="{% url 'productCategory' x.id %}">{{x.name}}</a></li> 
+                            </ul>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-7">
+                    <div class="product__discount">
+                        <div class="row isotope-grid">
+                        {% for y in products %}
+                            <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+                                <div class="block2">
+                                    <div class="block2-pic hov-img0">
+                                        <a href="{% url 'productsList' y.id %}">
+                                            <img src="{{ y.imageurl }}"   alt="IMG-PRODUCT">
+                                        </a>
+                                    </div>
+                                    <div class="block2-txt flex-w flex-t p-t-14">
+                                        <div class="block2-txt-child1 flex-col-l ">
+                                            <a class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">{{ y.name }}</a><br>
+                                            <span class="stext-105 cl3">Rs. {{ y.mrp }}/-</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Product Section End -->
+
+     <!-- Footer Section Begin -->
+    <footer class="footer spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__about__logo">
+                            <a href="/home"><img src="/static/img/logo.png" alt=""></a>
+                        </div>
+                        <ul>
+                            <li>Address: BHU Varanasi, India</li>
+                            <li>Phone: +91 880 9306 667</li>
+                            <li>Email: shop@bhu.com</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+                    <div class="footer__widget">
+                        <h6>Useful Links</h6>
+                        <ul>
+                            <li><a href="/home">Home</a></li>
+                            <li><a href="/products">Shop</a></li>
+                            <li><a href="/about">About Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="/static/js/jquery-3.3.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/jquery.nice-select.min.js"></script>
+    <script src="/static/js/jquery-ui.min.js"></script>
+    <script src="/static/js/jquery.slicknav.js"></script>
+    <script src="/static/js/mixitup.min.js"></script>
+    <script src="/static/js/owl.carousel.min.js"></script>
+    <script src="/static/js/main.js"></script>
+
+
+
+</body>
+
+</html>

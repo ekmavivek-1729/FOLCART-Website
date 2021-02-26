@@ -1,0 +1,32 @@
+from django.urls import path,re_path
+from website import views
+
+urlpatterns = [
+	path('home/',views.homepage),
+	path('products/',views.productall),
+	re_path('exploreProducts/(?P<id>[\\w-]+)/$',views.productCategory,name='productCategory'),
+	path('register/',views.register),
+	path('about/',views.about),
+	path('login/',views.loginUser),
+	path('productdetail/',views.productdet),
+	path('account/',views.accountis),
+	path('logout/',views.Logout),
+	path('shoppingcart/',views.shopcart),
+	re_path('explorePro/(?P<id>[\\w-]+)/$',views.productsList,name='productsList'),
+	path('addtocart/',views.addtocart),
+	path('checkout/',views.checkout),
+	path('adminpage/',views.adminPage),
+	path('categoriesadd/',views.adminCategory),
+	path('productsadd/',views.adminProducts),
+	path('userslist/',views.adminUsers),
+	path('orderslist/',views.adminOrders),
+	path('order/',views.particularOrder),
+	re_path('orderdetails/(?P<id>[\\w-]+)/$',views.particularOrder,name='orderDets'),
+	path('orderedbyme/',views.whatiOrdered),
+	path('orderdelete/',views.orderDelete),
+	re_path('account/(?P<id>[\\w-]+)/$',views.whatiOrdered,name='whatordered'),
+	path('categorydelete/',views.categoryDelete),
+	path('categoryadd/',views.categoryAdd),
+	path('productadd/',views.productAdd),
+	path('productdelete/',views.productDelete),
+]

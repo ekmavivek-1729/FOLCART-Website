@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Art Mall</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css">
+</head>
+
+<body class="animsition">
+	<!-- Humberger Begin -->
+    <div class="humberger__menu__overlay"></div>
+    <div class="humberger__menu__wrapper">
+        <div class="humberger__menu__logo">
+            <a href="/home"><img src="/static/img/logo.png" alt=""></a>
+        </div>
+        <nav class="humberger__menu__nav mobile-menu">
+            <ul>
+                <ul>
+                    <li><a href="/adminpage">Account</a></li>
+                    <li><a href="/categoriesadd">Categories</a></li>
+                    <li class="active"><a href="/productsadd">Products</a></li>
+                    <li><a href="/orderslist">Orders</a></li>
+                    <li><a href="/userslist">Users</a></li>
+                    <li style="left: 200px"> 
+                        {% if user.is_authenticated %}
+                            <a href="/logout"><img src="/static/img/logout-01.png" alt="IMG-LOGOUT"></a>
+                        {% else %}
+                            <a href="/login"><img src="/static/img/login-01.png" alt="IMG-LOGIN"></a>
+                        {% endif %}
+                    </li>
+            </ul>
+        </nav>
+        <div id="mobile-menu-wrap"></div>
+    </div>
+    <!-- Humberger End -->
+
+    <!-- Header Section Begin -->
+    <header class="header">       
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="header__logo">
+                        <a href="/home"><img src="/static/img/logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <nav class="header__menu">
+                        <ul>
+                            <li><a href="/adminpage">Account</a></li>
+                            <li><a href="/categoriesadd">Categories</a></li>
+                            <li class="active"><a href="/productsadd">Products</a></li>
+                            <li><a href="/orderslist">Orders</a></li>
+                            <li><a href="/userslist">Users</a></li>
+                            <li style="left: 200px"> 
+                                {% if user.is_authenticated %}
+                                    <a href="/logout"><img src="/static/img/logout-01.png" alt="IMG-LOGOUT"></a>
+                                {% else %}
+                                    <a href="/login"><img src="/static/img/login-01.png" alt="IMG-LOGIN"></a>
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="humberger__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="/static/img/vegetables.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2 style="color: black;">Products</h2>
+                        <div class="breadcrumb__option">
+                            <span style="color: black;"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+	
+	<div class="col-lg-12" style="text-align: center; padding-top: 50px;">
+	<button type="button" class="site-btn" " data-toggle="modal"data-target="#myModal1">Add a Product!</button>		
+	</div>
+
+	<!-- Content page -->
+	<div class="sec-banner bg0 p-t-30 p-b-10">
+		<div class="container">
+			<br>
+			<div class="col-lg-12" style="padding-left: 430px;padding-right: 430px;text-align: center;">
+                {% if messages %}
+                <div class="alert" style="background-color: #f44336; color: white; align-self: center;">
+                    {% for message in messages %}
+                    <span class="closebtn" style="margin-left: 15px; color: white; font-weight: bold; float: right; font-size: 22px; line-height: 20px; cursor: pointer; transition: 0.3s;" onclick="this.parentElement.style.display='none';">&times;
+                    </span> 
+                    <strong {% if message.tags %} class="{{ message.tags }} mtext-110 cl2" {% endif %}>{{ message }}</strong>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+		</div>
+	</div>
+
+	<section class="product spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-7">
+                    <div class="product__discount">
+                        <div class="row isotope-grid">
+						{% for y in product %}
+						<div class="col-lg-3">
+							<br>
+							<div class="categories__item set-bg" data-setbg="{{y.imageurl}}">
+							 	<h5><a>{{ y.name }}</a></h5>
+								<form method="post" action="/productdelete/">{% csrf_token %}
+									<input type="hidden" name="productid" value="{{y.id}}">
+									<button type="Submit" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i></button>
+								</form>					
+							</div>
+							<div style="text-align: center;">
+								<h5>{{ y.mrp }}	<br>
+								{{ y.categories }}</h5>
+							</div> 	
+						</div>	
+						{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>	
+
+  	<div class="container">
+	  <!-- Modal -->
+	  	<div class="modal fade" id="myModal1" role="dialog">
+		    <br style="line-height: 100px">
+		    <div class="modal-dialog">
+		    
+		      <!-- Modal content-->
+		      	<div class="modal-content">
+			        <div class="modal-header">
+			          <h4 class="modal-title mtext-105 cl2 txt-center p-b-30">Add Product</h4>
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        </div>
+			        <div class="modal-body">	
+			        	<form action="/productadd/" method="post">{% csrf_token %}
+							<div class="bor8 m-b-20 how-pos4-parent">
+								<input class="stext-111 cl2 plh3 size-116 p-l-22 p-r-30" type="text" name="product_name" placeholder="Product Name">
+							</div>
+							<br>
+							<div class="bor8 m-b-20 how-pos4-parent">
+								<select class="stext-111 cl2 plh3 size-116 p-l-22 p-r-30" name="category_name">
+									<option >Select a Category</option>
+									{% for y in allcategory %}
+										<option value="{{y.id}}">{{y.name}}</option>
+									{% endfor %}
+								</select>
+							</div>
+							<br><br>					
+							<div class="bor8 m-b-20 how-pos4-parent">
+								<input class="stext-111 cl2 plh3 size-116 p-l-22 p-r-30" type="text" name="mrp" placeholder="MRP (Value Only)">
+							</div>
+							<br>					
+							<div class="bor8 m-b-20 how-pos4-parent">
+								<input class="stext-111 cl2 plh3 size-116 p-l-22 p-r-30" type="text" name="weight" placeholder="Weight">
+							</div>
+							<br>
+							<div class="bor8 m-b-20 how-pos4-parent">
+								<select class="stext-111 cl2 plh3 size-116 p-l-22 p-r-30" name="shippingtime">
+									<option >Shipping Time</option>
+									{% for y in shiptime %}
+										<option value="{{y.id}}">{{y.name}}</option>
+									{% endfor %}
+								</select>
+							</div>
+							<br><br>
+							<div class="bor8 m-b-20 how-pos4-parent">
+								<input class="stext-111 cl2 plh3 size-116 p-l-22 p-r-30" type="url" name="image_url" placeholder="Image URL">
+							</div>
+							<br>
+							<button class="site-btn">
+								Submit
+							</button>
+						</form>
+	       			</div>
+		      	</div>
+		    </div>
+	  	</div>
+	</div>
+
+	
+	<!-- Footer Section Begin -->
+    <footer class="footer spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: center;">
+                    <div class="footer__about">
+                        <div class="footer__about__logo">
+                            <a href="/home"><img src="/static/img/logo.png" alt=""></a>
+                        </div>
+                        <ul>
+                            <li>Address: BHU Varanasi, India</li>
+                            <li>Phone: +91 880 9306 667</li>
+                            <li>Email: shop@bhu.com</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+<!--===============================================================================================-->	
+	<script src="/static/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/static/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/static/vendor/bootstrap/js/popper.js"></script>
+	<script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/static/vendor/select2/select2.min.js"></script>
+	<script>
+		$(".js-select2").each(function(){
+			$(this).select2({
+				minimumResultsForSearch: 20,
+				dropdownParent: $(this).next('.dropDownSelect2')
+			});
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="/static/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/static/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			$(this).css('position','relative');
+			$(this).css('overflow','hidden');
+			var ps = new PerfectScrollbar(this, {
+				wheelSpeed: 1,
+				scrollingThreshold: 1000,
+				wheelPropagation: false,
+			});
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+	</script>
+    <script src="/static/js/jquery-3.3.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/jquery.nice-select.min.js"></script>
+    <script src="/static/js/jquery-ui.min.js"></script>
+    <script src="/static/js/jquery.slicknav.js"></script>
+    <script src="/static/js/mixitup.min.js"></script>
+    <script src="/static/js/owl.carousel.min.js"></script>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
