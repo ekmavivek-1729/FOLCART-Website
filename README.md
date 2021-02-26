@@ -7,6 +7,9 @@ Also I plan to produce Tribal people Arts in this website.
 Because Tribal art ranges through a wide range of art forms, such as wall paintings, tribal dances, tribal music, and so on.
 We Provide an explorer of their Arts Across the many country and If the peoples want to sell their Art in this Mall so we provide direct money transfer to account.
 I’m using new trending technologies in market with maximum functionality.
+
+Technology Used:-
+
 Operating system      : Windows 10
  Front End                    : HTML, CSS, JavaScript 
  Frameworks/Library  : Bootstrap, Font Awesome, Google Font   
@@ -14,7 +17,10 @@ Operating system      : Windows 10
  Data Base                    :  SQLite
  Web Browser              :  Google Chrome
   Text Editor                  :   Py charm, VS Code
+  
+  
 future plan for this website:-
+
 Enabling OTP verification process
 Adding tracker of products in this website.
 Making a Payment Gateway for purchasing order.
