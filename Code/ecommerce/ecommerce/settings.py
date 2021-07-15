@@ -23,9 +23,9 @@ PROJECT_ROOT_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), os.p
 SECRET_KEY = '%83!tqc5)pe_(c_q9h$+nj94e^s811#c12yx5ticc@kgslg-yn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['folcart.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1','folcart.herokuapp.com']
 
 
 # Application definition
