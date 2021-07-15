@@ -5,6 +5,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.views.generic import FormView
+import razorpay
+from django.views.decorators.csrf import csrf_exempt
 
 from .models import *
 
@@ -323,3 +325,20 @@ def orderDelete(request):
 		return redirect('/account/')
 	else:
 		return redirect('/account/')
+
+def payment(request):
+    if request.method == "POST":
+        amount = request.POST.get('total_cost')
+        
+
+        client = razorpay.Client(
+            auth=("rzp_test_HkrfPKF3F5X23O", "qQBFEp7Cuh34ZvPGteLYlmnR"))
+
+        payment = client.order.create({'amount': amount, 'currency': 'INR',
+                                       'payment_capture': '1'})
+									
+    return render(request, 'shopping-cart.html')
+
+@csrf_exempt
+def success(request):
+    return render(request, "checkout.html")

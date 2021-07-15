@@ -29,4 +29,5 @@ urlpatterns = [
 	path('categoryadd/',views.categoryAdd),
 	path('productadd/',views.productAdd),
 	path('productdelete/',views.productDelete),
+	path('payment/',views.payment),
 ]

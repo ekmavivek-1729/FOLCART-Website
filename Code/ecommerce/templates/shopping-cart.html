@@ -13,14 +13,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="/static/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="/static/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="/static/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="/static/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="/static/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="/static/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="/static/css/style.css" type="text/css">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../static/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../static/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../static/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../static/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="../static/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../static/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../static/css/style.css" type="text/css">
 </head>
 
 <body>
@@ -156,7 +156,26 @@
                             <li>Subtotal <span>Rs. {{total_cost}}/-</span></li>
                             <li>Total <span>Rs. {{total_cost}}/-</span></li>
                         </ul>
-                        <a href="/checkout/" class="primary-btn">CHECKOUT</a>
+                        <form class="text-center border border-light p-5" action="/checkout" method="POST">
+                            {% csrf_token %}
+                            <!-- <input type="hidden" value="{{total_cost}}">  -->
+                            <script 
+                            src="https://checkout.razorpay.com/v1/checkout.js" 
+                            data-key="rzp_test_HkrfPKF3F5X23O"
+                            data-amount={{total_cost}}
+                            data-currency="INR" 
+                            data-order_id="{{payment.id}}" 
+                            data-buttontext="Pay with Razorpay"
+                            data-name="Professional Cipher" 
+                            data-description="Django and Data Science"
+                            data-image="https://example.com/your_logo.jpg" 
+                            data-prefill.name="PC" 
+                            data-prefill.email="pc@studygyaan.com"
+                            data-theme.color="#F37254">
+                        </script>
+                        <input type="hidden" custom="Hidden Element" name="hidden">
+                        </form>
+                        <!-- <a href="/checkout/" class="primary-btn">CHECKOUT</a> -->
                     </div>
                 </div>
             </div></form>
@@ -212,14 +231,14 @@
     </footer>
     <!-- Footer Section End -->
     <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/jquery.nice-select.min.js"></script>
+    <script src="../static/js/jquery-ui.min.js"></script>
+    <script src="../static/js/jquery.slicknav.js"></script>
+    <script src="../static/js/mixitup.min.js"></script>
+    <script src="../static/js/owl.carousel.min.js"></script>
+    <script src="../static/js/main.js"></script>
 
 
 </body>

@@ -41,6 +41,7 @@ class OrderMaster(models.Model):
 	ordertimedate = models.DateTimeField(auto_now_add = True)
 	order_status = models.BooleanField(default = True)
 	cartTotal = models.CharField(max_length = 20, null = True, blank = True)
+	payment_id= models.CharField(max_length=100, null=True)
 	
 class ShoppingCart(models.Model):
 	productid = models.ForeignKey(Product, on_delete = models.CASCADE, null = True, blank = True)
@@ -48,6 +49,13 @@ class ShoppingCart(models.Model):
 	totalAmount = models.CharField(max_length = 20, null = True, blank = True)
 	sessionid = models.ForeignKey(SessionMaster, on_delete = models.CASCADE, null = True, blank = True)
 	ordermasterid = models.ForeignKey(OrderMaster, on_delete = models.CASCADE, null = True, blank = True)
+	# payment_id= models.CharField(max_length=100)
+	# paid=models.BooleanField(default=False)
 	def __str__(self):
 		return '%s' %(self.productid)
 
+# class payment(models.Model):
+# 	productid = models.ForeignKey(Product, on_delete = models.CASCADE, null = True, blank = True)
+# 	totalAmount = models.CharField(max_length = 20, null = True, blank = True)
+	
+# 	paid=models.BooleanField(default=False)
