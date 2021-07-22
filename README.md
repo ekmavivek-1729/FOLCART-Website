@@ -1,5 +1,5 @@
 # FOLCART-Website
-This is Basically based upon Art Mall. For More Information please read about Readme file. 
+This is Basically based upon Art Mall. 
 
 
 This project is mainly concerned about the problem faced by the small town artists in getting attached with the market or customers in selling their unique and the tribal arts.
