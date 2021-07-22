@@ -9,4 +9,6 @@ https://folcart.herokuapp.com/
 
 ![Screenshot (258)](https://user-images.githubusercontent.com/53000452/126602308-6d0dc428-63b1-40de-896f-1ec64ed91c60.png)
 ![Screenshot (259)](https://user-images.githubusercontent.com/53000452/126602317-1b78c4e0-c6c1-4635-9c00-0357a3ddff1f.png)
+![Screenshot (260)](https://user-images.githubusercontent.com/53000452/126602337-2eaf942c-8907-4d13-ae8f-e1a875fb45ed.png)
+![Screenshot (261)](https://user-images.githubusercontent.com/53000452/126602351-72677c60-4d46-4880-85ef-1cf11d968d50.png)
 
