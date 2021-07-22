@@ -6,6 +6,8 @@ That is an FOLCART website which contains all Arts from across the country and t
 
 My website have payment gateway also and if you want to cancel your order go to account and cancel your order. 
 
+I have also added the covid update in my website which is redirected to Ministry of Health department page. 
+
 
 I have also hosted my website on Heroku Platform. If you want to visit my website please follow the link given below.
 
